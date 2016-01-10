@@ -1,0 +1,32 @@
+# Example config file /etc/vsftpd/vsftpd.conf
+#
+# READ THIS: This example file is NOT an exhaustive list of vsftpd options.
+# Please read the vsftpd.conf.5 manual page to get a full idea of vsftpd's
+# capabilities.
+#
+# This file is manageged by Puppet.
+# default ftp share is at /srv/ftp
+anonymous_enable=YES
+pasv_enable=YES
+pasv_min_port=13000
+pasv_max_port=13100
+port_enable=YES
+pasv_address=<%= @ec2_metadata['public-hostname'] %>
+pasv_addr_resolve=YES
+local_enable=YES
+write_enable=NO
+local_umask=022
+dirmessage_enable=YES
+xferlog_enable=YES
+connect_from_port_20=YES
+xferlog_file=/var/log/vsftpd.log
+xferlog_std_format=YES
+chroot_local_user=NO
+chroot_list_enable=NO
+listen=YES
+pam_service_name=vsftpd
+userlist_enable=NO
+tcp_wrappers=YES
+hide_ids=NO
+setproctitle_enable=NO
+text_userdb_names=NO
