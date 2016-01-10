@@ -2,7 +2,8 @@ class lvm_ftp (
   $package_name = 'vsftpd',
   $service_name = 'vsftpd',
   $confdir      = '/etc',
-  $lvm_url      = 'http://d211c3u0z4tqwj.cloudfront.net/puppet-2015.3.1-learning-3.2.ova',
+  $lvm_svr_url  = 'http://d211c3u0z4tqwj.cloudfront.net',
+  $lvm_filename = 'puppet-2015.3.1-learning-3.2.ova',
   ) {
   package { $package_name: ensure => installed, }
 
@@ -19,8 +20,9 @@ class lvm_ftp (
     notify  => Service[$service_name],
   }
 
-  exec { "/usr/bin/wget ${lvm_url} -O /srv/ftp/puppet-2015.3.1-learning-3.2.ova":
-    creates => '/srv/ftp/puppet-2015.3.1-learning-3.2.ova',
+  exec { "/usr/bin/wget ${lvm_svr_url}/${lvm_filename} -O /srv/ftp/${lvm_filename}":
+    creates => "/srv/ftp/${lvm_filename}",
+    timeout => 60 * 8, # 8 minutes
     require => Package[$package_name],
   }
 }
