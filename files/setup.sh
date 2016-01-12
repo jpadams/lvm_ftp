@@ -1,5 +1,6 @@
 #!/bin/bash
-
+export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+sleep 120
 wget http://apt.puppetlabs.com/pool/trusty/PC1/p/puppet-agent/puppet-agent_1.3.2-1trusty_amd64.deb
 dpkg -i ./puppet-agent_1.3.2-1trusty_amd64.deb
 rm -f ./puppet-agent_1.3.2-1trusty_amd64.deb
